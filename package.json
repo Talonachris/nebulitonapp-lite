@@ -1,24 +1,27 @@
 {
-  "name": "nebulitonapp-lite",
+  "name": "nebuliton-app-lite",
   "version": "1.0.1",
-  "description": "Electron app for the Nebuliton Lite WebView",
   "main": "main.js",
-  "author": "Nebuliton",
+  "description": "The official Nebuliton App Lite for Windows and Linux",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "de.nebuliton.app",
+    "appId": "de.nebuliton.lite",
     "productName": "Nebuliton App Lite",
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": "AppImage"
-    },
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "assets",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
     }
   },
   "devDependencies": {
