@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nebuliton App Lite</title>
+  <link rel="icon" href="assets/icon.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #140018;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    #webview-container {
+      flex: 1;
+    }
+
+    webview {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #1a0e24;
+      padding: 12px 0;
+      border-top: 1px solid #333;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 0.95em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    nav button:hover,
+    nav button.active {
+      color: #ffd27f;
+    }
+
+    nav i {
+      font-size: 1.3em;
+      margin-bottom: 4px;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="webview-container">
+    <webview id="content-view" src="https://talonachris.github.io/nebulitonapp-lite-sites/" allowpopups></webview>
+  </div>
+
+  <nav>
+    <button onclick="switchTab(event, 'https://talonachris.github.io/nebulitonapp-lite-sites/')" class="active">
+      <i class="fas fa-home"></i>
+      Home
+    </button>
+    <button onclick="switchTab(event, 'https://panel.nebuliton.io')">
+      <i class="fas fa-server"></i>
+      Panel
+    </button>
+    <button onclick="switchTab(event, 'https://status.nebuliton.de')">
+      <i class="fas fa-signal"></i>
+      Status
+    </button>
+    <button onclick="switchTab(event, 'https://talonachris.github.io/nebulitonapp-lite-sites/about.html')">
+      <i class="fas fa-info-circle"></i>
+      About
+    </button>
+  </nav>
+
+  <script>
+    const webview = document.getElementById("content-view");
+    const buttons = document.querySelectorAll("nav button");
+
+    function switchTab(event, url) {
+      webview.src = url;
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.currentTarget.classList.add("active");
+    }
+  </script>
+</body>
+</html>
