@@ -1,0 +1,38 @@
+{
+  "name": "nebuliton-app-lite",
+  "version": "1.1.0",
+  "description": "Lite Companion App für Nebuliton – mit Zugriff auf Webdienste wie Panel, Status, Info & mehr.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": {
+    "name": "Christian Hagenacker",
+    "email": "kontakt@nebuliton.de"
+  },
+  "build": {
+    "appId": "de.nebuliton.app",
+    "productName": "Nebuliton App Lite",
+    "copyright": "Copyright © 2025 Christian Hagenacker",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility",
+      "icon": "assets/icon.png"
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3"
+  }
+}
