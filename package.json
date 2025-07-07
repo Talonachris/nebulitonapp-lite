@@ -1,6 +1,6 @@
 {
   "name": "nebuliton-app-lite",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Lite Companion App für Nebuliton – mit Zugriff auf Webdienste wie Panel, Status, Info & mehr.",
   "main": "main.js",
   "scripts": {
