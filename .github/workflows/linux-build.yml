@@ -1,0 +1,32 @@
+name: Build Nebuliton AppImage
+
+on:
+  workflow_dispatch:  # erlaubt manuellen Start
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}  # <--- HIER ist die Magie!
+
+    steps:
+      - name: 🧾 Repo klonen
+        uses: actions/checkout@v3
+
+      - name: 🧰 Node.js installieren
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Abhängigkeiten installieren
+        run: npm install
+
+      - name: 🛠️ AppImage bauen
+        run: npx electron-builder --linux AppImage --publish always
+
+      - name: ⬆️ AppImage bereitstellen (als Fallback)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NebulitonApp.AppImage
+          path: dist/*.AppImage
