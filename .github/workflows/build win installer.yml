@@ -1,0 +1,32 @@
+name: Build Nebuliton Windows Installer
+
+on:
+  workflow_dispatch:  # Manuell auslösbar
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    steps:
+      - name: 🧾 Repo klonen
+        uses: actions/checkout@v3
+
+      - name: 🧰 Node.js installieren
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Abhängigkeiten installieren
+        run: npm install
+
+      - name: 🛠️ Windows-Installer bauen
+        run: npx electron-builder --win nsis --publish always
+
+      - name: 📤 Installer bereitstellen (Fallback)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NebulitonApp.WindowsInstaller
+          path: dist/*.exe
